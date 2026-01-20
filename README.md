@@ -1,6 +1,12 @@
-PXE-Helper-Scripts
+## Iventoy PXE Server TTeck Helper Script Backup
+
+### Step by Step Installation:
+
+> Install the basic LXC Container:
 
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/lenne0815/PXE-Helper-Scripts/refs/heads/main/Iventoy.sh)"
+
+> Pull latest Iventoy release:
 
 https://github.com/ventoy/PXE/releases/download/v1.0.21/iventoy-1.0.21-linux-free.tar.gz
 
@@ -13,6 +19,8 @@ tar -C /tmp -xzf iventoy*.tar.gz
 mv /tmp/iventoy*/* /opt/iventoy/
 
 rm -rf iventoy*.tar.gz
+
+> Run Installation Script to get the Service up and running @ port 26000
 
 1. Define helper functions (if they aren't already in your system)
 msg_info() { echo -e "\e[34m[INFO]\e[0m $1"; }
@@ -45,17 +53,10 @@ sudo systemctl daemon-reload
 sudo systemctl enable -q --now iventoy
 msg_ok "Created Service"
 
-
-________________________________________________________
-
-Step 2: Configure SSH for Access
-By default, root login and password authentication might be disabled in the container's SSH config.
-
-Open the configuration file:
-
-Bash
+> Configure SSH for Access
 
 nano /etc/ssh/sshd_config
+
 Modify the following lines (remove the # comment symbol if present):
 
 To allow root login: Change PermitRootLogin to yes.
@@ -64,8 +65,6 @@ To allow passwords: Ensure PasswordAuthentication is set to yes.
 
 Save and exit (Ctrl+O, Enter, Ctrl+X).
 
-Restart the service to apply changes:
-
-Bash
+> Restart the service to apply changes:
 
 systemctl restart ssh
