@@ -44,3 +44,28 @@ msg_info "Creating Service"
 sudo systemctl daemon-reload
 sudo systemctl enable -q --now iventoy
 msg_ok "Created Service"
+
+
+________________________________________________________
+
+Step 2: Configure SSH for Access
+By default, root login and password authentication might be disabled in the container's SSH config.
+
+Open the configuration file:
+
+Bash
+
+nano /etc/ssh/sshd_config
+Modify the following lines (remove the # comment symbol if present):
+
+To allow root login: Change PermitRootLogin to yes.
+
+To allow passwords: Ensure PasswordAuthentication is set to yes.
+
+Save and exit (Ctrl+O, Enter, Ctrl+X).
+
+Restart the service to apply changes:
+
+Bash
+
+systemctl restart ssh
