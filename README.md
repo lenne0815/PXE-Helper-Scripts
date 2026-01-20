@@ -23,10 +23,12 @@ rm -rf iventoy*.tar.gz
 > Run Installation Script to get the Service up and running @ port 26000
 
 1. Define helper functions (if they aren't already in your system)
+
 msg_info() { echo -e "\e[34m[INFO]\e[0m $1"; }
 msg_ok() { echo -e "\e[32m[OK]\e[0m $1"; }
 
-2. Create the service file (Requires sudo)
+3. Create the service file (Requires sudo)
+
 sudo bash -c 'cat <<EOF >/etc/systemd/system/iventoy.service
 [Unit]
 Description=iVentoy PXE Booter
